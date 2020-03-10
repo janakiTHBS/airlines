@@ -1,0 +1,49 @@
+<div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <table>
+                    <tr>
+                    <th>Flight </th>
+                    <th>From </th>
+                    <th>To </th>
+                    <th>Departure </th>
+                    <th>Arrival </th>
+                    </tr>
+                    <tr>
+                        <td>{{flight.name}}</td>
+                        <td>{{flight.from}}</td>
+                        <td>{{flight.to}}</td>
+                        <td>{{flight.timeOfDeparture}}</td>
+                        <td>{{flight.timeOfArrival}}</td>
+                    </tr>
+                </table>
+            </div>
+            <div class="row">
+                <div class="col-xs-12">
+                    <input type="text" name="id" #id/>
+                    <button type="button" class="btn btn-primary" (click)="onSearch()">Search</button>
+                </div>
+            </div>
+            <div class="col-xs-12" *ngIf="loaded">
+                <table>
+                 <tr>
+                     <th>
+                         Passenger
+                     </th>
+                     <th>
+                         service required
+                     </th>
+                     <th>
+                         Seat
+                     </th>
+                 </tr>
+                 <tr>
+                    <td>{{passenger.name}}</td> 
+                    <td>{{passenger.service ? passenger.service :'NA'}}</td>
+                    <td>{{passenger.seatNumber}}</td> 
+                    <button (click)="onChange()">Change</button>
+                 </tr>
+                </table>            
+            </div>
+        </div>
+    </div>
