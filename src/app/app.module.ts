@@ -16,6 +16,8 @@ import { HeaderComponent } from './header/header.component';
 import { PassengerComponent } from './shared/passenger/passenger.component';
 import { AuthRoutingModule } from './shared/auth/auth-routing.module';
 import { AdminComponent } from './admin/admin.component';
+import { FlightsComponent } from './admin/flights/flights.component';
+import { ServiceComponent } from './admin/service/service.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -24,7 +26,9 @@ import { AdminComponent } from './admin/admin.component';
     AlertComponent,
     HeaderComponent,
     PassengerComponent,
-    AdminComponent
+    AdminComponent,
+    FlightsComponent,
+    ServiceComponent,
   ],
   imports: [
     BrowserModule,

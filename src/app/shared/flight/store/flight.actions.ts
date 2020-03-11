@@ -8,6 +8,15 @@ export const FETCH_FLIGHTS='SET_FLIGHTS';
 
 export const ADD_PASSENGERS='ADD_PASSENGERS';
 
+export const ADD_PASSENGER='ADD_PASSENEGR';
+
+export const ADD_SERVICE='ADD-SERVICE';
+
+export class AddService implements Action {
+    readonly type=ADD_SERVICE;
+    constructor(public payload:{service:string,index:number}){}
+}
+
 export class SetFlights implements Action {
 readonly type=FETCH_FLIGHTS;
 constructor(public payload :Flight[]){
@@ -15,9 +24,14 @@ constructor(public payload :Flight[]){
 }
 }
 
+export class AddPassenger implements Action {
+   readonly type=ADD_PASSENGER;
+   constructor(public payload:{index:number,passenger:Passenger}){}
+}
 export class AddPassengers implements Action {
     readonly type=ADD_PASSENGERS;
     constructor(public payload:Passenger[]){}
 }
 
-export type FlightActions=SetFlights | AddPassengers;
+export type FlightActions=SetFlights | AddPassengers 
+|AddPassenger| AddService;

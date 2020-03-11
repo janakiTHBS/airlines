@@ -23,7 +23,8 @@ export class FlightComponent implements OnInit {
     console.log('Flight component')
     this.store.select('flights').pipe(map(FlightState=>{
       console.log(FlightState.flights.slice().sort((a:any,b:any)=>a.timeOfDeparture-b.timeOfDeparture));
-     return FlightState.flights.slice()
+      
+      return FlightState.flights.slice()
      .sort((a:any,b:any)=>a.timeOfDeparture-b.timeOfDeparture).find((flight,index)=>{
        return flight.timeOfDeparture >= new Date();
      })

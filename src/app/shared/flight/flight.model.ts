@@ -9,8 +9,12 @@ export class Flight {
     timeOfDeparture:Date;
     timeOfArrival:Date;
     passengers:Passenger[];
+    services:string[];
     constructor(id:string,name:string,to:string,from:string,
-        timeOfDeparture:Date,timeOfArrival:Date,passengers?:Passenger[]){
+        timeOfDeparture:Date,
+        timeOfArrival:Date,
+        passengers?:Passenger[],
+        services?:string[]){
             this.id=id;
             this.name=name;
             this.to=to;
@@ -18,6 +22,7 @@ export class Flight {
             this.timeOfDeparture=timeOfDeparture;
             this.timeOfArrival=timeOfArrival;
             this.passengers=passengers;
+            this.services=services;
         }
 
 }

@@ -3,6 +3,7 @@ import { Store } from '@ngrx/store';
 import * as fromApp from '../app.reducer';
 import { map } from 'rxjs/operators';
 import { Flight } from '../shared/flight/flight.model';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-admin',
@@ -12,8 +13,8 @@ import { Flight } from '../shared/flight/flight.model';
 export class AdminComponent implements OnInit {
 
   flights:Flight[];
-
-  constructor(private store:Store<fromApp.appState>) { }
+  
+  constructor(private store:Store<fromApp.appState>,private router:Router,private route:ActivatedRoute) { }
 
   ngOnInit(): void {
     this.store.select('flights').pipe(map(flightState=>{
@@ -25,7 +26,17 @@ export class AdminComponent implements OnInit {
     
   }
 
+onAddPassenger(index:number){
+  
+this.router.navigate(['flights',index,'passenger'])
+}
+
 onAddPassengers(index:number){
- console.log(this.flights[index]);
+
+}
+
+displayPassengers(index:number) {
+this.flights[index];
+this.router.navigate(['/flights',index])
 }
 }

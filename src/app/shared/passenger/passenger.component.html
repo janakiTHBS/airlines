@@ -1,21 +1,22 @@
 <div class="container">
     <div class="row">
         <div class="col-xs-12">
-            <form>
+            <form [formGroup]="passengerForm" (ngSubmit)="onSubmit()">
                 <div class="form-group">
                     <label for="name">Name:</label>
-                    <input type="text" class="form-control" id="name"/>
+                    <input type="text" class="form-control" id="name" formControlName="name"/>
                 </div>
                 <div class="form-group">
-                        <label for="service">Service Required:</label>
-                        <input type="text" class="form-control" id="service"/>
-                    </div>
-
+                        <label for="service" >Choose Service:</label>
+                                <select id="service" class="form-control" formControlName="service">
+                                <option *ngFor="let service of flight.services" [value]="service.service">{{service.service}}</option>
+                               </select>
+                            </div>
                     <div class="form-group">
                             <label for="seatno">Seat No: </label>
-                            <input type="text" class="form-control" id="seatno"/>
+                            <input type="text" class="form-control" id="seatno" formControlName="seatNumber"/>
                         </div>
-                   <button type="submit" class="btn btn-primary">Add Passenger</button>     
+                   <button type="submit" class="btn btn-primary">Submit</button>     
             </form>
         </div>
     </div>

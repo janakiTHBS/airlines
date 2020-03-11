@@ -17,5 +17,6 @@ tr {
 	text-align:center;	
 }
  
-tr:nth-child(even) {background: #FFFFFF}
-tr:nth-child(odd) {background: #BBBBBB}	
+td{
+    text-align:left;
+}
