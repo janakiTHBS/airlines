@@ -1,9 +1,9 @@
 export class Passenger {
-    id:number;
+    id:string;
     name:string;
     service:string;
     seatNumber :string;
-    constructor(id:number,name:string,seatNumber:string,service ?:string){
+    constructor(id:string,name:string,seatNumber:string,service ?:string){
         this.id=id;
         this.name=name;
         this.service=service;

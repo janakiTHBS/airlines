@@ -9,10 +9,10 @@ passenger:Passenger;
 
 const initialState:State={
     passengers:[
-        new Passenger(1,'Janaki','A15','infants'),
-        new Passenger(2,'Lavanya','A16','wheel chair'),
-        new Passenger(3,'Sukumar','A18'),
-        new Passenger(4,'Nishvi','A19')
+        new Passenger('1','Janaki','A15','infants'),
+        new Passenger('2','Lavanya','A16','wheel chair'),
+        new Passenger('3','Sukumar','A18'),
+        new Passenger('4','Nishvi','A19')
     ],
     passenger:null
 

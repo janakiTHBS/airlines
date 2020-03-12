@@ -26,8 +26,8 @@ this.route.params.subscribe(params=>{
   }
 
   onSubmit(){
- 
-    this.store.dispatch(new FlightActions.AddService({service:this.serviceForm.value,index:this.flightId}));
+ const service=this.serviceForm.get('service').value;
+    this.store.dispatch(new FlightActions.AddService({service:service,index:this.flightId}));
     this.router.navigate(['flights',this.flightId])
   }
 }

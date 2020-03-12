@@ -14,7 +14,7 @@ import { Passenger } from './passenger.model';
 })
 export class PassengerComponent implements OnInit,OnDestroy {
 flightId:number;
-passengerId:number;
+passengerId:string;
 editmode:boolean=false;
 passenger:Passenger;
 flight:Flight;
@@ -26,6 +26,8 @@ flight:Flight;
 
   passengerForm:FormGroup;
   ngOnInit(): void {
+
+    
      this.route.params.subscribe(params=>{
        this.flightId=params['id'];
      });
@@ -37,7 +39,14 @@ flight:Flight;
 
      console.log(this.passengerId);
   
-  
+  this.fecthFlights();
+   
+
+   this.formInit();
+  }
+
+  private fecthFlights(){
+
     this.store.select('flights').pipe(map(flightState=>{
       console.log(flightState.flights);
       return flightState.flights;
@@ -49,10 +58,11 @@ flight:Flight;
     });
     console.log(this.flight);
 
-   this.formInit();
+    return this.flight;
+    
   }
-
  private formInit(){
+   let id="";
    let pname=" ";
    let service='';
    let seatNumber='';
@@ -61,10 +71,13 @@ flight:Flight;
   
     this.passenger=this.flight.passengers.find((passenger,index)=>{
      
-      return this.passengerId==index+1;
+      return passenger.id===this.passengerId;
     })
    
+    console.log(this.passenger);
+    id=this.passenger.id;
     pname=this.passenger.name;
+
 
     if(this.flight.services){
      service= this.flight.services.find((service,index)=>{
@@ -76,6 +89,7 @@ flight:Flight;
    }
 
    this.passengerForm=new FormGroup({
+    id:new FormControl(id),
     name:new FormControl(pname),
     service:new FormControl(service['service']),
     seatNumber:new FormControl(seatNumber)
@@ -87,7 +101,14 @@ flight:Flight;
   onSubmit(){
     console.log(this.passengerForm.value);
     console.log(this.flightId);
-this.store.dispatch(new FlightActions.AddPassenger({index:this.flightId,passenger:this.passengerForm.value}));
+    if(this.editmode){
+      console.log(this.flight)
+      this.store.dispatch(new FlightActions.UpdatePassenger({fid:this.flightId,pid:this.passengerId,passenger:this.passengerForm.value}))
+    }
+    else {
+      this.store.dispatch(new FlightActions.AddPassenger({index:this.flightId,passenger:this.passengerForm.value}));
+    }
+
   
 this.passengerForm.reset();
 this.router.navigate(['flights',this.flightId])

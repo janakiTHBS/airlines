@@ -10,7 +10,15 @@ export const ADD_PASSENGERS='ADD_PASSENGERS';
 
 export const ADD_PASSENGER='ADD_PASSENEGR';
 
+export const UPDATE_PASSENGER='UPDATE_PASSENGER';
+
 export const ADD_SERVICE='ADD-SERVICE';
+
+export class UpdatePassenger implements Action {
+    readonly type=UPDATE_PASSENGER;
+    constructor(public payload:{fid:number,pid:string,passenger:Passenger}){}
+
+}
 
 export class AddService implements Action {
     readonly type=ADD_SERVICE;
@@ -34,4 +42,4 @@ export class AddPassengers implements Action {
 }
 
 export type FlightActions=SetFlights | AddPassengers 
-|AddPassenger| AddService;
+|AddPassenger| AddService |UpdatePassenger;
