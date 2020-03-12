@@ -10,6 +10,7 @@
                         <label for="service" >Choose Service:</label>
                                 <select id="service" class="form-control" formControlName="service">
                                 <option *ngFor="let service of flight.services" [value]="service.service">{{service.service}}</option>
+                              
                                </select>
                             </div>
                     <div class="form-group">

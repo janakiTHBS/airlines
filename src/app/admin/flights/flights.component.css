@@ -1,3 +1,7 @@
+
+
+
+
 table {   
 	border-collapse:collapse;
 	border-bottom:1px solid gray;
@@ -19,4 +23,15 @@ tr {
  
 td{
     text-align:left;
+}
+
+
+.child-1{
+	background-color: orange;
+
+}
+
+.child-2 {
+	background-color: green;
+
 }

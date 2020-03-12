@@ -1,15 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output } from '@angular/core';
 import { Flight } from 'src/app/shared/flight/flight.model';
 import { Store } from '@ngrx/store';
 import * as fromApp from '../../app.reducer';
 import { map } from 'rxjs/operators';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Passenger } from 'src/app/shared/passenger/passenger.model';
+import { Subject } from 'rxjs';
 @Component({
   selector: 'app-flights',
   templateUrl: './flights.component.html',
   styleUrls: ['./flights.component.css']
 })
 export class FlightsComponent implements OnInit {
+ 
   flightId:number;
   flights:Flight[];
   flight:Flight;
@@ -35,8 +38,9 @@ export class FlightsComponent implements OnInit {
    
  }
   
- onEditPassenger(){
-   this.router.navigate(['flights',this.flightId,'passenger'])
+ onEditPassenger(passenger:Passenger){
+  
+   this.router.navigate(['flights',this.flightId,'passenger'],{queryParams:{pid:passenger.id}})
  }
 
  onAddPassenger(){

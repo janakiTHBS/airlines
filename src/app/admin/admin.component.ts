@@ -26,10 +26,7 @@ export class AdminComponent implements OnInit {
     
   }
 
-onAddPassenger(index:number){
-  
-this.router.navigate(['flights',index,'passenger'])
-}
+
 
 onAddPassengers(index:number){
 

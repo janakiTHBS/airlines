@@ -8,7 +8,7 @@ import { HttpClientModule } from '@angular/common/http';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
-
+import {FlexLayoutModule} from '@angular/flex-layout';
 import { AuthEffects } from './shared/auth/store/auth.effects';
 import { FlightComponent } from './shared/flight/flight.component';
 import { AlertComponent } from './shared/auth/alert/alert.component';
@@ -37,6 +37,7 @@ import { ServiceComponent } from './admin/service/service.component';
     FormsModule,
     ReactiveFormsModule,
     AuthRoutingModule,
+    FlexLayoutModule,
     StoreModule.forRoot(fromApp.appReducer),
     EffectsModule.forRoot([AuthEffects,]),
     
