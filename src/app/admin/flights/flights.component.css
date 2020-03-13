@@ -1,6 +1,11 @@
+.mat-color {
+	background-color:lightblue;
+}
 
+::ng-deep .mat-icon{
+	font-size: 20px;
 
-
+}
 
 table {   
 	border-collapse:collapse;

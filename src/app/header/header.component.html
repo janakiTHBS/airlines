@@ -10,6 +10,7 @@
             </ul>
               
             <ul class="nav navbar-nav navbar-right ">
+                <li ><a  style="cursor: pointer;" *ngIf="isAuthenticated"> <mat-icon>person</mat-icon>{{username}}</a></li>
                 <li><a style="cursor: pointer;" *ngIf="isAuthenticated" (click)="onLogout()">LogOut</a></li>
             </ul>
            </div>

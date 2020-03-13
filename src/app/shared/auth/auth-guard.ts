@@ -14,13 +14,18 @@ export class AuthGuard implements CanActivate {
         return this.store.select('auth').pipe(take(1),map((authState)=>{
         return authState.user;
         }),map(user=>{
+            console.log(user);
             const isAuth=!!user;
             console.log(isAuth);
             if(isAuth){
+        
+                if(user.role==="ADMIN"){
+
+                }
                 return true;
             }
+
             this.routerR.createUrlTree(['/auth']);
         }));
 
-    }
-}
+    }}

@@ -6,6 +6,7 @@ import { AdminComponent } from './admin/admin.component';
 import { PassengerComponent } from './shared/passenger/passenger.component';
 import { FlightsComponent } from './admin/flights/flights.component';
 import { ServiceComponent } from './admin/service/service.component';
+import { SeatMapComponent } from './shared/seat-map/seat-map.component';
 
 
 
@@ -14,7 +15,8 @@ const routes: Routes = [
  {path:'admin',component:AdminComponent},
  {path:'flights/:id/passenger',component:PassengerComponent},
  {path:'flights/:id',component:FlightsComponent},
- {path:'flights/:id/service',component:ServiceComponent}
+ {path:'flights/:id/service',component:ServiceComponent},
+ {path:'seats',component:SeatMapComponent}
 ];
 
 @NgModule({
