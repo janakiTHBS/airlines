@@ -11,13 +11,19 @@ import * as AuthActions from '../shared/auth/store/auth.actions';
 })
 export class HeaderComponent implements OnInit {
 userSub:Subscription;
+username:string;
   isAuthenticated=false;
   constructor(private store:Store<fromApp.appState>) { }
 
   ngOnInit(): void {
     this.userSub=this.store.select('auth').pipe(map(authState=>{
+
       return authState.user;
   })).subscribe(user=>{
+    if(user){
+      this.username=user.email.split('@')[0];
+    }
+    
   this.isAuthenticated =!user ? false:true;
  
   });
