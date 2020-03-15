@@ -1,40 +1,97 @@
-<div class="container">
+<div class="container" style="display: flex;align-items: center;justify-content: center;">
 <div class="row" fxLayout="column">
     <div class="fila">
-    <div class="row-1">
+    <div class="row-1" style="border:2px solid;width:fit-content;padding-top:14px;padding-right:32px;border-radius:25px">
+        <ul fxLayout="row">
+            <div >
+                <button mat-icon-button color="primary" aria-label="Example icon-button with a heart icon">
+                    <mat-icon>favorite</mat-icon>
+                  </button><span>Available</span>
+                  <button mat-icon-button disabled aria-label="Example icon-button with a heart icon">
+                    <mat-icon>favorite</mat-icon>
+                  </button><span>Unavailable</span>
+                  <button mat-icon-button color="accent" aria-label="Example icon-button with a heart icon">
+                    <mat-icon>favorite</mat-icon>
+                  </button><span>Main Cabin Extra</span>
+                  <button mat-icon-button color="warn" aria-label="Example icon-button with a heart icon">
+                    <mat-icon>favorite</mat-icon>
+                  </button><span>Preffered</span>
+                
+            </div>
+            </ul>
             <ul fxLayout="row">
-                    <li><a (click)="seat('A1')">A1</a></li>
-                    <mat-icon>airline_seat_flat</mat-icon>
-                    <li><a (click)="seat('A2')">A2</a></li>
-                    <li><a (click)="seat('A3')">A3</a></li>
-                    <li><a (click)="seat('A4')">A4</a></li>
-                    <li><a (click)="seat('A5')">A5</a></li>
-                    <li><a (click)="seat('A6')">A6</a></li>
-                    <li><a (click)="seat('A7')">A7</a></li>
-                    <li><a (click)="seat('A8')">A8</a></li>
-                    <li><a (click)="seat('A9')">A9</a></li>
-                    <li><a (click)="seat('A10')">A10</a></li>
+                <div *ngFor="let row1 of rows1; let i = index" >
+                    <button style="width: 1%;display: inline-flex;align-items: center;justify-content: center;" (click)="seatSelected(row1.id)" *ngIf="i!==2&&i!==5"   mat-raised-button color={{row1.color}} [ngStyle]="{'background': row1.color,color:'darkgray'}"><mat-icon>airline_seat_recline_normal</mat-icon>{{row1.id}}</button>
+                    <span *ngIf="i==2||i==5">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                    <span>&nbsp;</span>
+                </div>
                 </ul>
+                <ul fxLayout="row">
+                    <div *ngFor="let row1 of rows2; let i = index" >
+                        <button style="width: 1%;display: inline-flex;align-items: center;justify-content: center;" (click)="seatSelected(row1.id)" *ngIf="i!==2&&i!==5"   mat-raised-button color={{row1.color}} [ngStyle]="{'background': row1.color,color:'darkgray'}"><mat-icon>airline_seat_recline_normal</mat-icon>{{row1.id}}</button>
+                        <span *ngIf="i==2||i==5">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                        <span>&nbsp;</span>
+                    </div>
+                </ul>
+                <ul fxLayout="row">
+                    <div *ngFor="let row1 of rows3; let i = index" >
+                        <button color={{row1.color}} [ngStyle]="{'background': row1.color,color:'darkgray'}" style="width: 1%;display: inline-flex;align-items: center;justify-content: center;" (click)="seatSelected(row1.id)" *ngIf="i!==2&&i!==5"   mat-raised-button ><mat-icon>airline_seat_recline_normal</mat-icon>{{row1.id}}</button>
+                        <span *ngIf="i==2||i==5">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                        <span>&nbsp;</span>
+                    </div>
+                </ul>
+                <ul fxLayout="row">
+                    <div *ngFor="let row1 of rows4; let i = index" >
+                        <button style="width: 1%;display: inline-flex;align-items: center;justify-content: center;" (click)="seatSelected(row1.id)" *ngIf="i!==2&&i!==5" color={{row1.color}} [ngStyle]="{'background': row1.color,color:'darkgray'}"  mat-raised-button ><mat-icon>airline_seat_recline_normal</mat-icon>{{row1.id}}</button>
+                        <span *ngIf="i==2||i==5">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                        <span>&nbsp;</span>
+                    </div>
+                </ul>
+                <ul fxLayout="row">
+                    <div *ngFor="let row1 of rows5; let i = index" >
+                        <button style="width: 1%;display: inline-flex;align-items: center;justify-content: center;" (click)="seatSelected(row1.id)" *ngIf="i!==2&&i!==5"   mat-raised-button color={{row1.color}} [ngStyle]="{'background': row1.color,color:'darkgray'}"><mat-icon>airline_seat_recline_normal</mat-icon>{{row1.id}}</button>
+                        <span *ngIf="i==2||i==5">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                        <span>&nbsp;</span>
+                    </div>
+                </ul>
+                <ul fxLayout="row">
+                    <div *ngFor="let row1 of rows6; let i = index" >
+                        <button style="width: 1%;display: inline-flex;align-items: center;justify-content: center;" (click)="seatSelected(row1.id)" *ngIf="i!==2&&i!==5"   mat-raised-button color={{row1.color}} [ngStyle]="{'background': row1.color,color:'darkgray'}"><mat-icon>airline_seat_recline_normal</mat-icon>{{row1.id}}</button>
+                        <span *ngIf="i==2||i==5">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                        <span>&nbsp;</span>
+                    </div>
+                </ul>
+                <ul fxLayout="row">
+                    <div *ngFor="let row1 of rows7; let i = index" >
+                        <button style="width: 1%;display: inline-flex;align-items: center;justify-content: center;" (click)="seatSelected(row1.id)" *ngIf="i!==2&&i!==5"   mat-raised-button color={{row1.color}} [ngStyle]="{'background': row1.color,color:'darkgray'}"><mat-icon>airline_seat_recline_normal</mat-icon>{{row1.id}}</button>
+                        <span *ngIf="i==2||i==5">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                        <span>&nbsp;</span>
+                    </div>
+                </ul>
+                <ul fxLayout="row">
+                    <div *ngFor="let row1 of rows8; let i = index" >
+                        <button style="width: 1%;display: inline-flex;align-items: center;justify-content: center;" (click)="seatSelected(row1.id)" *ngIf="i!==2&&i!==5"   mat-raised-button color={{row1.color}} [ngStyle]="{'background': row1.color,color:'darkgray'}"><mat-icon>airline_seat_recline_normal</mat-icon>{{row1.id}}</button>
+                        <span *ngIf="i==2||i==5">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                        <span>&nbsp;</span>
+                    </div>
+                </ul>
+                <ul fxLayout="row">
+                    <div *ngFor="let row1 of rows9; let i = index" >
+                        <button (click)="seatSelected(row1.id)" style="width: 1%;display: inline-flex;align-items: center;justify-content: center;" *ngIf="i!==2&&i!==5;" mat-raised-button color={{row1.color}} [ngStyle]="{'background': row1.color,color:'darkgray'}"><mat-icon>airline_seat_recline_normal</mat-icon>{{row1.id}}</button>
+                        <span *ngIf="i==2||i==5">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                        <span>&nbsp;</span>
+                    </div>
+                </ul>
+                <!-- <ul fxLayout="row">
+                    <div *ngFor="let row1 of rows10; let i = index" >
+                        <button *ngIf="i!==2&&i!==5"   mat-raised-button color="primary"><mat-icon>airline_seat_recline_normal</mat-icon>{{row1}}</button>
+                        <span *ngIf="i==2||i==5">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                        <span>&nbsp;</span>
+                    </div>
+                </ul> -->
       
     </div>
-    <mat-icon>airline_seat_recline_normal</mat-icon>
-    <div class="row-2" fxLayout="row" fxFlex="100">
-            <ul fxLayout="row">
-                    <li><a (click)="seat('B1')"></a>
-                        </li>
-                      
-                    <li><a (click)="seat('B2')">B2</a></li>
-                    <li><a (click)="seat('B3')">B3</a></li>
-                    <li><a (click)="seat('B4')">B4</a></li>
-                    <li><a (click)="seat('B5')">B5</a></li>
-                    <li><a (click)="seat('B6')">B6</a></li>
-                    <li><a (click)="seat('B7')">B7</a></li>
-                    <li><a (click)="seat('B8')">B8</a></li>
-                    <li><a (click)="seat('B9')">B9</a></li>
-                    <li><a (click)="seat('B10')">B10</a></li>
-                </ul>
-      
-    </div>
+    
 </div>
 </div>
 </div>

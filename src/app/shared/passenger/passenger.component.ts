@@ -3,7 +3,7 @@ import { FormGroup, FormControl, FormArray } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import * as fromApp from '../../app.reducer';
 import * as FlightActions from '../flight/store/flight.actions';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router,NavigationExtras } from '@angular/router';
 import { map } from 'rxjs/operators';
 import { Flight } from '../flight/flight.model';
 import { Passenger } from './passenger.model';
@@ -14,8 +14,19 @@ import { Passenger } from './passenger.model';
 })
 export class PassengerComponent implements OnInit,OnDestroy {
 flightId:number;
+seatNumber:number;
+passprt:string;
+service:string;
+ticketBooked=[]
+passengerName:string;
 passengerId:string;
 editmode:boolean=false;
+seatsLayout= {
+  totalRows:10,
+seatsPerRow:6,
+seatNaming:'rowType',
+booked:['1A','5D']   
+}
 passenger:Passenger;
 flight:Flight;
   services:string[]=[];
@@ -26,8 +37,20 @@ flight:Flight;
 
   passengerForm:FormGroup;
   ngOnInit(): void {
+  var sub = this.route
+    .queryParams
+    .subscribe(params => {
+      // Defaults to 0 if no query param provided.
+    console.log(params)
+    this.seatNumber=params.serviceId
+   
+    console.log(this.ticketBooked)
+    });
+    this.ticketBooked.push(this.seatNumber)
 
-    
+    console.log(this.ticketBooked)
+
+    // console.log(this.router.getCurrentNavigation().extras.state)
      this.route.params.subscribe(params=>{
        this.flightId=params['id'];
      });
@@ -67,6 +90,7 @@ flight:Flight;
    let service='';
    let seatNumber='';
 
+
    if(this.editmode){
   
     this.passenger=this.flight.passengers.find((passenger,index)=>{
@@ -97,6 +121,16 @@ flight:Flight;
 
 
   }
+  selectPassport(value){
+    console.log(value)
+    this.passprt=value
+  }
+  selectName(value){
+    this.passengerName=value
+  }
+  selectService(value){
+    this.selectName=value
+  }
 
   onSubmit(){
     console.log(this.passengerForm.value);
@@ -112,6 +146,10 @@ flight:Flight;
   
 this.passengerForm.reset();
 this.router.navigate(['flights',this.flightId])
+  }
+  getSelected(event){
+    //Do stuff
+    console.log(event)
   }
 
   ngOnDestroy(){
