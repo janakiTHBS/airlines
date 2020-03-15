@@ -1,30 +1,43 @@
-<div class="container">
-    <div class="row">
-        <div class="col-xs-12">
-            <form [formGroup]="passengerForm" (ngSubmit)="onSubmit()">
+<form
+  [formGroup]="passengerService.passengerForm"
+  (ngSubmit)="onSubmit()"
+  class="normal-form"
+>
+  <mat-grid-list cols="1" rowHeight="300px">
+    <mat-grid-tile>
+      <div class="controles-container">
+        <input type="hidden" formControlName="$key" />
+        <mat-form-field>
+          <input formControlName="id" matInput placeholder="Passport number" />
+          <mat-error>This field is mandatory</mat-error>
+        </mat-form-field>
 
-                    <div class="form-group">
-                            <label for="id">Passport No:</label>
-                            <input type="text" class="form-control" id="id" formControlName="id"/>
-                        </div>
-                <div class="form-group">
-                    <label for="name">Name:</label>
-                    <input type="text" class="form-control" id="name" formControlName="name"/>
-                </div>
-                <div class="form-group">
-                        <label for="service" >Choose Service:</label>
-                                <select id="service" class="form-control" formControlName="service">
-                                <option *ngFor="let service of flight.services" [value]="service">{{service}}</option>
-                              
-                               </select>
-                            </div>
-                    <div class="form-group">
-                            <label for="seatno">Seat No: </label>
-                            <input type="text" class="form-control" id="seatno" formControlName="seatNumber"/>
-                            <button routerLink="/seats">seatmap</button>
-                        </div>
-                   <button type="submit" class="btn btn-primary">Submit</button>     
-            </form>
+        <mat-form-field>
+          <input formControlName="name" matInput placeholder="name" />
+          <mat-error>This is field is mandatory</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Choose Service:</mat-label>
+          <mat-select formControlName="service">
+            <mat-option
+              *ngFor="let service of updatedFlight.services"
+              [value]="service"
+              >{{ service }}</mat-option
+            >
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Seat No:</mat-label>
+          <input formControlName="seatNumber" matInput placeholder="seatno" />
+        </mat-form-field>
+        <div class="button-row">
+          <button mat-raise-button color="primary">Submit</button>
+          <button mat-raised-button color="warn" (click)="onClear()">
+            Clear
+          </button>
         </div>
-    </div>
-</div>
+      </div>
+    </mat-grid-tile>
+  </mat-grid-list>
+</form>

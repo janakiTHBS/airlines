@@ -1,40 +1,5 @@
-<div class="container">
-<div class="row" fxLayout="column">
-    <div class="fila">
-    <div class="row-1">
-            <ul fxLayout="row">
-                    <li><a (click)="seat('A1')">A1</a></li>
-                    <mat-icon>airline_seat_flat</mat-icon>
-                    <li><a (click)="seat('A2')">A2</a></li>
-                    <li><a (click)="seat('A3')">A3</a></li>
-                    <li><a (click)="seat('A4')">A4</a></li>
-                    <li><a (click)="seat('A5')">A5</a></li>
-                    <li><a (click)="seat('A6')">A6</a></li>
-                    <li><a (click)="seat('A7')">A7</a></li>
-                    <li><a (click)="seat('A8')">A8</a></li>
-                    <li><a (click)="seat('A9')">A9</a></li>
-                    <li><a (click)="seat('A10')">A10</a></li>
-                </ul>
-      
-    </div>
-    <mat-icon>airline_seat_recline_normal</mat-icon>
-    <div class="row-2" fxLayout="row" fxFlex="100">
-            <ul fxLayout="row">
-                    <li><a (click)="seat('B1')"></a>
-                        </li>
-                      
-                    <li><a (click)="seat('B2')">B2</a></li>
-                    <li><a (click)="seat('B3')">B3</a></li>
-                    <li><a (click)="seat('B4')">B4</a></li>
-                    <li><a (click)="seat('B5')">B5</a></li>
-                    <li><a (click)="seat('B6')">B6</a></li>
-                    <li><a (click)="seat('B7')">B7</a></li>
-                    <li><a (click)="seat('B8')">B8</a></li>
-                    <li><a (click)="seat('B9')">B9</a></li>
-                    <li><a (click)="seat('B10')">B10</a></li>
-                </ul>
-      
-    </div>
-</div>
-</div>
-</div>
+<mat-grid-list cols="2" rowHeight="fit" style="height:200px" gutterSize="10px">
+  <mat-grid-tile rowspan="2">tile1</mat-grid-tile>
+  <mat-grid-tile>tile2</mat-grid-tile>
+  <mat-grid-tile>tile3</mat-grid-tile>
+</mat-grid-list>

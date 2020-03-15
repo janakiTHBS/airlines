@@ -1,46 +1,26 @@
 <div class="container">
-    <div class="row">
-        <div class="col-xs-12">
+  <div class="row">
+    <div class="col-xs-12">
+      <table>
+        <tr>
+          <th>Name</th>
+          <th>To</th>
+          <th>From</th>
+          <th>Departure City</th>
+          <th>Arrival City</th>
+          <th>Action</th>
+        </tr>
 
-            	<table>
-			
-                        <tr>
-                            <th>Name</th>
-                            <th>To</th>
-                            <th>From</th>
-                            <th>Departure City</th>
-                            <th>Arrival City</th>
-                            <th>Action</th>
-                        </tr>
-
-            	       
-            <tr *ngFor="let flight of flights; let i=index">
-             
-
-       <td><a (click)="displayPassengers(i)">{{flight.name}}</a></td>
-        <td>{{flight.to}}</td>
-        <td>{{flight.from}}</td>
-        <td>{{flight.timeOfDeparture}}</td>
-        <td>{{flight.timeOfArrival}}</td>   
-            </tr>
-        </table> 
-        </div>
+        <tr *ngFor="let flight of flights; let i = index">
+          <td>
+            <a (click)="displayPassengers(i)">{{ flight.name }}</a>
+          </td>
+          <td>{{ flight.to }}</td>
+          <td>{{ flight.from }}</td>
+          <td>{{ flight.timeOfDeparture }}</td>
+          <td>{{ flight.timeOfArrival }}</td>
+        </tr>
+      </table>
     </div>
+  </div>
 </div>
-
-
-
-
-
-
-
-
-
-	
-
-
-
-
-
-
-

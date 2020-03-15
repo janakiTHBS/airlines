@@ -1,39 +1,46 @@
-import { Component, OnInit } from '@angular/core';
-import { Store } from '@ngrx/store';
-import * as fromApp from '../app.reducer';
-import { map } from 'rxjs/operators';
-import { Flight } from '../shared/flight/flight.model';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Component, OnInit } from "@angular/core";
+import { Store } from "@ngrx/store";
+import * as fromApp from "../app.reducer";
+import { map } from "rxjs/operators";
+import { Flight } from "../shared/flight/flight.model";
+import { Router, ActivatedRoute } from "@angular/router";
+import { FlightService } from "../shared/flight/flight.service";
 
 @Component({
-  selector: 'app-admin',
-  templateUrl: './admin.component.html',
-  styleUrls: ['./admin.component.css']
+  selector: "app-admin",
+  templateUrl: "./admin.component.html",
+  styleUrls: ["./admin.component.css"]
 })
 export class AdminComponent implements OnInit {
+  flights: Flight[];
 
-  flights:Flight[];
-  
-  constructor(private store:Store<fromApp.appState>,private router:Router,private route:ActivatedRoute) { }
+  constructor(
+    private store: Store<fromApp.appState>,
+    private router: Router,
+    private route: ActivatedRoute,
+    private flightService: FlightService
+  ) {}
 
   ngOnInit(): void {
-    this.store.select('flights').pipe(map(flightState=>{
-      return flightState.flights;
-    })).subscribe(flights=>{
-      this.flights=flights;
-      console.log(flights);
-    })
-    
+    this.store
+      .select("flights")
+      .pipe(
+        map(flightState => {
+          return flightState.flights;
+        })
+      )
+      .subscribe(flights => {
+        this.flights = flights;
+        console.log(flights);
+      });
   }
 
+  onAddPassengers(index: number) {}
 
-
-onAddPassengers(index:number){
-
-}
-
-displayPassengers(index:number) {
-this.flights[index];
-this.router.navigate(['/flights',index])
-}
+  displayPassengers(index: number) {
+    console.log(this.flights[index]);
+    this.flightService.setFlight(this.flights[index]);
+    this.flights[index];
+    this.router.navigate(["/flights", index]);
+  }
 }

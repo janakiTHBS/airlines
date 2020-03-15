@@ -1,85 +1,166 @@
 <div class="container">
-    <div fxLayout="column">
-        <div fxLayout="row" fxFlex="80">
-        <div class="row">
-            <div class="col-xs-12">
-                    <table>
-                            <tr>
-                                <th>Name</th>
-                                <th>To</th>
-                                <th>From</th>
-                                <th>Departure City</th>
-                                <th>Arrival City</th>
-                            </tr>       
-                <tr>
-           <td>{{flight.name}}</td>
-            <td>{{flight.to}}</td>
-            <td>{{flight.from}}</td>
-            <td>{{flight.timeOfDeparture}}</td>
-            <td>{{flight.timeOfArrival}}</td>    
-                </tr>
-            </table> 
-            
-            <div class="row">
-                <div class="col-xs-12">
-                <h3>Passenger details</h3>
-                <table>
-                    <tr>
-                    <th>Name</th>
-                    <th>Service</th>
-                    <th>Seat No</th>
-                    <th>Action</th>
-                    </tr>
-                        <tr *ngFor="let passenger of flight.passengers">
-                                        <td>{{passenger.name}}</td>     
-                                    <td>{{passenger.service}}</td>
-                                    <td>{{passenger.seatNumber}}</td>
-                                    <td><a><button (click)="onEditPassenger(passenger)">Edit passenger</button></a></td>
-                                </tr>
-            </table>
-            </div>
-            </div>
-        </div>  
-        </div>
-        <div fxLayout="row" fxFlex="20">
-           <div fxLayout="column">
-                <button class="btn btn-primary" (click)="onAddServices()">Add Services</button>
-             <div class="row" *ngIf="flight.services">
-                <div class="col-xs-12">
-                <div *ngFor="let service of flight.services">
-                    {{service}}
-                </div>
-                </div>
-              </div>
-           </div>
-            <div fxLayout="column">
-                
-            </div>
+  <div>
+    <div>
+      <div class="row">
+        <div class="col-xs-12">
+          <table>
+            <tr>
+              <th>Name</th>
+              <th>To</th>
+              <th>From</th>
+              <th>Departure City</th>
+              <th>Arrival City</th>
+            </tr>
+            <tr>
+              <td>{{ flight.name }}</td>
+              <td>{{ flight.to }}</td>
+              <td>{{ flight.from }}</td>
+              <td>{{ flight.timeOfDeparture }}</td>
+              <td>{{ flight.timeOfArrival }}</td>
+            </tr>
+          </table>
 
-            <div fxLayout="column">
-                    
-                    <button mat-flat-button class="mat-color" (click)="onAddPassenger()"><mat-icon>person_add</mat-icon>Add Passenger</button>
+          <div class="row">
+            <div class="col-xs-12">
+              <h3>Passenger details</h3>
+              <table>
+                <tr>
+                  <th>Name</th>
+                  <th>Service</th>
+                  <th>Seat No</th>
+                  <th>Action</th>
+                </tr>
+                <tr *ngFor="let passenger of flight.passengers">
+                  <td>{{ passenger.name }}</td>
+                  <td>{{ passenger.service }}</td>
+                  <td>{{ passenger.seatNumber }}</td>
+                  <td>
+                    <a
+                      ><button (click)="onEditPassenger(passenger)">
+                        Edit passenger
+                      </button></a
+                    >
+                  </td>
+                </tr>
+              </table>
             </div>
-            
+          </div>
         </div>
+      </div>
+      <div>
+        <div>
+          <button class="btn btn-primary" (click)="onAddServices()">
+            Add Services
+          </button>
+          <div class="row" *ngIf="flight.services">
+            <div class="col-xs-12">
+              <div *ngFor="let service of flight.services">
+                {{ service }}
+              </div>
+            </div>
+          </div>
+        </div>
+        <div fxLayout="column"></div>
+
+        <div fxLayout="column">
+          <button mat-flat-button class="mat-color" (click)="onAddPassenger()">
+            <mat-icon>person_add</mat-icon>Add Passenger
+          </button>
+        </div>
+      </div>
     </div>
-    </div>
-    </div>
-    
-    
-    
-    
-    
-    
-    
-    
-    
-        
-    
-    
-    
-    
-    
-    
-    
-    
+  </div>
+</div>
+
+<div class="search-div">
+  <button mat-raised-button (click)="onAddPassenger()">
+    <mat-icon>add</mat-icon>Add Passenger
+  </button>
+  <mat-form-field class="search-form-field" floatLabel="never">
+    <input
+      matInput
+      [(ngModel)]="searchKey"
+      placeholder="search"
+      autocomplete="off"
+      (keyup)="applyFilter()"
+    />
+  </mat-form-field>
+  <button
+    mat-button
+    matSuffix
+    mat-icon-button
+    aria-label="Clear"
+    *ngIf="searchKey"
+    (click)="onSearchClear()"
+  >
+    <mat-icon>close</mat-icon>
+  </button>
+</div>
+
+<div mat="mat-elevation-z8">
+  <mat-table [dataSource]="listPassenger" matSort>
+    <ng-container matColumnDef="name">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Name</mat-header-cell>
+      <mat-cell *matCellDef="let element">{{ element.name }}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="passport">
+      <mat-header-cell *matHeaderCellDef mat-sort-header
+        >Passport</mat-header-cell
+      >
+      <mat-cell *matCellDef="let element">{{ element.id }}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="service">
+      <mat-header-cell *matHeaderCellDef>Service</mat-header-cell>
+      <mat-cell *matCellDef="let element">{{ element.service }}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="seat">
+      <mat-header-cell *matHeaderCellDef>Seat NO</mat-header-cell>
+      <mat-cell *matCellDef="let element">{{ element.seatNumber }}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="action">
+      <mat-header-cell *matHeaderCellDef></mat-header-cell>
+      <mat-cell *matCellDef="let element">
+        <button mat-icon-button (click)="onEditPassenger(element)">
+          <mat-icon>launch</mat-icon>
+        </button>
+        <button mat-icon-button color="warn">
+          <mat-icon>delete_outline</mat-icon>
+        </button>
+      </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="loading">
+      <mat-footer-cell *matFooterCellDef colspan="6">
+        Loading data...
+      </mat-footer-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="nodata">
+      <mat-footer-cell *matFooterCellDef colspan="6">
+        No data.
+      </mat-footer-cell>
+    </ng-container>
+    <mat-header-row *matHeaderRowDef="displayPassengerColumns">
+    </mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayPassengerColumns"> </mat-row>
+    <mat-footer-row
+      *matFooterRowDef="['loading']"
+      [ngClass]="{ hide: listPassenger != null }"
+    ></mat-footer-row>
+    <!--<mat-footer-row
+      *matFooterRowDef="['nodata']"
+      [ngClass]="{
+        hide: !listPassenger.data.length == 0
+      }"
+    ></mat-footer-row>-->
+  </mat-table>
+  <mat-paginator
+    [pageSizeOptions]="[1, 5, 10, 25, 100]"
+    [pageSize]="5"
+    showFirstLastButtons
+  >
+  </mat-paginator>
+</div>
