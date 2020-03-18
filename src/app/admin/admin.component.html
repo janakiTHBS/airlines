@@ -1,26 +1,35 @@
-<div class="container">
-  <div class="row">
-    <div class="col-xs-12">
-      <table>
-        <tr>
-          <th>Name</th>
-          <th>To</th>
-          <th>From</th>
-          <th>Departure City</th>
-          <th>Arrival City</th>
-          <th>Action</th>
-        </tr>
+<mat-table [dataSource]="listFlight">
+  <ng-container matColumnDef="Operator">
+    <mat-header-cell *matHeaderCellDef>Operator</mat-header-cell>
+    <mat-cell *matCellDef="let element">{{ element.name }}</mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="To">
+    <mat-header-cell *matHeaderCellDef>To</mat-header-cell>
+    <mat-cell *matCellDef="let element">{{ element.to }}</mat-cell>
+  </ng-container>
 
-        <tr *ngFor="let flight of flights; let i = index">
-          <td>
-            <a (click)="displayPassengers(i)">{{ flight.name }}</a>
-          </td>
-          <td>{{ flight.to }}</td>
-          <td>{{ flight.from }}</td>
-          <td>{{ flight.timeOfDeparture }}</td>
-          <td>{{ flight.timeOfArrival }}</td>
-        </tr>
-      </table>
-    </div>
-  </div>
-</div>
+  <ng-container matColumnDef="From">
+    <mat-header-cell *matHeaderCellDef>From</mat-header-cell>
+    <mat-cell *matCellDef="let element">{{ element.from }}</mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="Departure time">
+    <mat-header-cell *matHeaderCellDef>Departure time</mat-header-cell>
+    <mat-cell *matCellDef="let element">{{
+      element.timeOfDeparture | date: "medium"
+    }}</mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="Arrival time">
+    <mat-header-cell *matHeaderCellDef>Arrival time</mat-header-cell>
+    <mat-cell *matCellDef="let element">{{
+      element.timeOfArrival | date: "medium"
+    }}</mat-cell>
+  </ng-container>
+  <mat-header-row *matHeaderRowDef="displayFlightColumns"></mat-header-row>
+  <mat-row
+    *matRowDef="let row; columns: displayFlightColumns"
+    (click)="displayPassengers(listFlight.filteredData.indexOf(row))"
+  ></mat-row>
+  <mat-footer-row></mat-footer-row>
+</mat-table>

@@ -24,6 +24,7 @@ export class FlightsComponent implements OnInit {
   flights: Flight[];
   flight: Flight;
   listPassenger: MatTableDataSource<any>;
+  listFlight: MatTableDataSource<Flight>;
   searchKey: string;
 
   displayPassengerColumns: string[] = [
@@ -33,6 +34,7 @@ export class FlightsComponent implements OnInit {
     "seat",
     "action"
   ];
+  displayFlightColumns: string[] = ["Operator"];
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   constructor(
@@ -47,11 +49,13 @@ export class FlightsComponent implements OnInit {
   ngOnInit(): void {
     this.route.params.subscribe(params => {
       this.flightId = params["id"];
+      this.flightService.setFlightId(this.flightId);
     });
     this.fetchFlights();
     console.log(this.flightId);
 
     this.listPassenger = new MatTableDataSource(this.flight.passengers);
+    this.listFlight = new MatTableDataSource([this.flight]);
     // this.listPassenger = new MatTableDataSource(
     // this.passengerService.getPassengers(this.flight.id)
     //);
@@ -100,7 +104,7 @@ export class FlightsComponent implements OnInit {
   }
 
   onAddPassenger() {
-    this.flightService.setFlight(this.flight);
+    //this.flightService.setFlight(this.flight);
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;

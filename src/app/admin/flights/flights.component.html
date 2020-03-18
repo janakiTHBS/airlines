@@ -1,72 +1,32 @@
-<div class="container">
+<div>
   <div>
+    <table>
+      <tr>
+        <th>Name</th>
+        <th>To</th>
+        <th>From</th>
+        <th>Departure City</th>
+        <th>Arrival City</th>
+      </tr>
+      <tr>
+        <td>{{ flight.name }}</td>
+        <td>{{ flight.to }}</td>
+        <td>{{ flight.from }}</td>
+        <td>{{ flight.timeOfDeparture }}</td>
+        <td>{{ flight.timeOfArrival }}</td>
+      </tr>
+    </table>
+  </div>
+</div>
+
+<div>
+  <button mat-raised-button color="primary" (click)="onAddServices()">
+    Add Services
+  </button>
+  <div *ngIf="flight.services">
     <div>
-      <div class="row">
-        <div class="col-xs-12">
-          <table>
-            <tr>
-              <th>Name</th>
-              <th>To</th>
-              <th>From</th>
-              <th>Departure City</th>
-              <th>Arrival City</th>
-            </tr>
-            <tr>
-              <td>{{ flight.name }}</td>
-              <td>{{ flight.to }}</td>
-              <td>{{ flight.from }}</td>
-              <td>{{ flight.timeOfDeparture }}</td>
-              <td>{{ flight.timeOfArrival }}</td>
-            </tr>
-          </table>
-
-          <div class="row">
-            <div class="col-xs-12">
-              <h3>Passenger details</h3>
-              <table>
-                <tr>
-                  <th>Name</th>
-                  <th>Service</th>
-                  <th>Seat No</th>
-                  <th>Action</th>
-                </tr>
-                <tr *ngFor="let passenger of flight.passengers">
-                  <td>{{ passenger.name }}</td>
-                  <td>{{ passenger.service }}</td>
-                  <td>{{ passenger.seatNumber }}</td>
-                  <td>
-                    <a
-                      ><button (click)="onEditPassenger(passenger)">
-                        Edit passenger
-                      </button></a
-                    >
-                  </td>
-                </tr>
-              </table>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div>
-        <div>
-          <button class="btn btn-primary" (click)="onAddServices()">
-            Add Services
-          </button>
-          <div class="row" *ngIf="flight.services">
-            <div class="col-xs-12">
-              <div *ngFor="let service of flight.services">
-                {{ service }}
-              </div>
-            </div>
-          </div>
-        </div>
-        <div fxLayout="column"></div>
-
-        <div fxLayout="column">
-          <button mat-flat-button class="mat-color" (click)="onAddPassenger()">
-            <mat-icon>person_add</mat-icon>Add Passenger
-          </button>
-        </div>
+      <div *ngFor="let service of flight.services">
+        {{ service }}
       </div>
     </div>
   </div>

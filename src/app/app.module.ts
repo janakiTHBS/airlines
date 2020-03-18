@@ -24,6 +24,14 @@ import { SeatMapComponent } from "./shared/seat-map/seat-map.component";
 import { NoopAnimationsModule } from "@angular/platform-browser/animations";
 import { PassengerService } from "./shared/passenger/passenger.service";
 import { FlightService } from "./shared/flight/flight.service";
+import { Auth2Component } from "./shared/auth2/auth2.component";
+import { LoginComponent } from "./shared/auth2/login/login.component";
+
+import { environment } from "../environments/environment";
+import { AngularFireModule } from "angularfire2";
+import { AngularFireDatabaseModule } from "angularfire2/database";
+import { AngularFireAuthModule } from "angularfire2/auth";
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -35,7 +43,9 @@ import { FlightService } from "./shared/flight/flight.service";
     AdminComponent,
     FlightsComponent,
     ServiceComponent,
-    SeatMapComponent
+    SeatMapComponent,
+    Auth2Component,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -47,6 +57,12 @@ import { FlightService } from "./shared/flight/flight.service";
     AuthRoutingModule,
     FlexLayoutModule,
     MaterialModule,
+    AngularFireModule.initializeApp(
+      environment.firebaseConfig,
+      "angular-auth-firebase"
+    ),
+    AngularFireDatabaseModule,
+    AngularFireAuthModule,
     StoreModule.forRoot(fromApp.appReducer),
     EffectsModule.forRoot([AuthEffects])
   ],

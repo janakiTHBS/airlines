@@ -5,6 +5,7 @@ import { map } from "rxjs/operators";
 import { Flight } from "../shared/flight/flight.model";
 import { Router, ActivatedRoute } from "@angular/router";
 import { FlightService } from "../shared/flight/flight.service";
+import { MatTableDataSource } from "@angular/material/table";
 
 @Component({
   selector: "app-admin",
@@ -13,7 +14,14 @@ import { FlightService } from "../shared/flight/flight.service";
 })
 export class AdminComponent implements OnInit {
   flights: Flight[];
-
+  listFlight: MatTableDataSource<Flight>;
+  displayFlightColumns = [
+    "Operator",
+    "To",
+    "From",
+    "Departure time",
+    "Arrival time"
+  ];
   constructor(
     private store: Store<fromApp.appState>,
     private router: Router,
@@ -31,6 +39,7 @@ export class AdminComponent implements OnInit {
       )
       .subscribe(flights => {
         this.flights = flights;
+        this.listFlight = new MatTableDataSource(flights);
         console.log(flights);
       });
   }
@@ -39,7 +48,7 @@ export class AdminComponent implements OnInit {
 
   displayPassengers(index: number) {
     console.log(this.flights[index]);
-    this.flightService.setFlight(this.flights[index]);
+    //this.flightService.setFlight(this.flights[index]);
     this.flights[index];
     this.router.navigate(["/flights", index]);
   }
