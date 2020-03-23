@@ -1,24 +1,25 @@
 <div class="container">
-        <div class="row">
-            <div class="col-xs-12">
-                <table>
-                    <tr>
-                    <th>Flight </th>
-                    <th>From </th>
-                    <th>To </th>
-                    <th>Departure </th>
-                    <th>Arrival </th>
-                    </tr>
-                    <tr>
-                        <td>{{flight.name}}</td>
-                        <td>{{flight.from}}</td>
-                        <td>{{flight.to}}</td>
-                        <td>{{flight.timeOfDeparture}}</td>
-                        <td>{{flight.timeOfArrival}}</td>
-                    </tr>
-                </table>
-            </div>
-            <div class="row">
+  <div class="row">
+    <div class="col-xs-12">
+      <table>
+        <tr>
+          <th>Flight</th>
+          <th>From</th>
+          <th>To</th>
+          <th>Departure</th>
+          <th>Arrival</th>
+        </tr>
+        <tr>
+          <td>{{ flight.name }}</td>
+          <td>{{ flight.from }}</td>
+          <td>{{ flight.to }}</td>
+          <td>{{ flight.timeOfDeparture }}</td>
+          <td>{{ flight.timeOfArrival }}</td>
+        </tr>
+      </table>
+    </div>
+
+    <!--<div class="row">
                 <div class="col-xs-12">
                     <input type="text" name="id" #id/>
                     <button type="button" class="btn btn-primary" (click)="onSearch()">Search</button>
@@ -44,6 +45,54 @@
                     <button (click)="onChange()">Change</button>
                  </tr>
                 </table>            
-            </div>
-        </div>
+            </div>-->
+
+    <div>
+      <mat-table [dataSource]="passengerlist">
+        <ng-container matColumnDef="name">
+          <mat-header-cell *matHeaderCellDef mat-sort-header
+            >Name</mat-header-cell
+          >
+          <mat-cell *matCellDef="let element">{{ element.name }}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="passport">
+          <mat-header-cell *matHeaderCellDef mat-sort-header
+            >Passport</mat-header-cell
+          >
+          <mat-cell *matCellDef="let element">{{ element.id }}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="service">
+          <mat-header-cell *matHeaderCellDef>Service</mat-header-cell>
+          <mat-cell *matCellDef="let element">{{ element.service }}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="seat">
+          <mat-header-cell *matHeaderCellDef>Seat NO</mat-header-cell>
+          <mat-cell *matCellDef="let element">{{
+            element.seatNumber
+          }}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="action">
+          <mat-header-cell *matHeaderCellDef></mat-header-cell>
+          <mat-cell *matCellDef="let element">
+            <button mat-icon-button (click)="onEditPassenger(element)">
+              <mat-icon>launch</mat-icon>
+            </button>
+            <button mat-icon-button color="warn">
+              <mat-icon>delete_outline</mat-icon>
+            </button>
+          </mat-cell>
+        </ng-container>
+        <mat-header-row
+          *matHeaderRowDef="displayPassengerColumns"
+        ></mat-header-row>
+        <mat-row
+          *matRowDef="let row; columns: displayPassengerColumns"
+        ></mat-row>
+      </mat-table>
     </div>
+  </div>
+</div>

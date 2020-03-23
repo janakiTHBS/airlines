@@ -7,6 +7,7 @@ import { Store } from "@ngrx/store";
 import * as flightActions from "../flight/store/flight.actions";
 import { Passenger } from "./passenger.model";
 import { map } from "rxjs/operators";
+import { SeatService } from "../seat-map/seat.service";
 
 @Injectable({
   providedIn: "root"
@@ -16,15 +17,16 @@ export class PassengerService implements OnInit {
   passengerList;
   constructor(
     private flightService: FlightService,
-    private store: Store<fromApp.appState>
+    private store: Store<fromApp.appState>,
+    private seatService: SeatService
   ) {}
 
   passengerForm: FormGroup = new FormGroup({
     $key: new FormControl(null),
     id: new FormControl(null),
     name: new FormControl(null),
-    service: new FormControl(["wheel chair"]),
-    seatNumber: new FormControl(null)
+    service: new FormControl(["wheel chair"])
+    //seatNumber: new FormControl(null)
   });
 
   ngOnInit() {
@@ -37,8 +39,8 @@ export class PassengerService implements OnInit {
       $key: null,
       id: "",
       name: "",
-      service: "",
-      seatNumber: ""
+      service: ""
+      //seatNumber: ""
     });
   }
   getPassengers() {
@@ -50,11 +52,17 @@ export class PassengerService implements OnInit {
   }
 
   insertPassenger(passenger) {
-    console.log(passenger);
+    const pass = new Passenger(
+      passenger.id,
+      passenger.name,
+      this.seatService.getSelectedSeat(),
+      passenger.service
+    );
+    console.log(pass);
     this.store.dispatch(
       new flightActions.AddPassenger({
         index: +this.flight.id,
-        passenger: passenger
+        passenger: pass
       })
     );
   }
@@ -68,6 +76,7 @@ export class PassengerService implements OnInit {
       })
     );
   }
+
   populateForm(passenger, fid) {
     let editFlight: Flight;
     this.store
@@ -97,8 +106,8 @@ export class PassengerService implements OnInit {
       $key: "update",
       id: passenger.id,
       name: passenger.name,
-      service: editFlight.services,
-      seatNumber: passenger.seatNumber
+      service: editFlight.services
+      //seatNumber: passenger.seatNumber
     });
   }
 }

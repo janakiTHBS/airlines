@@ -90,3 +90,10 @@ snack-bar-container.notification simple-snack-bar {
   font-size: 18px !important;
   font-weight: bold;
 }
+
+.custom-dialog-container .mat-dialog-container {
+  /* add your styles */
+  margin-left: 0px;
+  margin: 0px;
+  padding: 0px;
+}

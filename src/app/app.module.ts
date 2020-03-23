@@ -31,6 +31,8 @@ import { environment } from "../environments/environment";
 import { AngularFireModule } from "angularfire2";
 import { AngularFireDatabaseModule } from "angularfire2/database";
 import { AngularFireAuthModule } from "angularfire2/auth";
+import { SignupComponent } from "./shared/auth2/signup/signup.component";
+import { UserEffects } from "./shared/auth2/store/user.effects";
 
 @NgModule({
   declarations: [
@@ -45,7 +47,8 @@ import { AngularFireAuthModule } from "angularfire2/auth";
     ServiceComponent,
     SeatMapComponent,
     Auth2Component,
-    LoginComponent
+    LoginComponent,
+    SignupComponent
   ],
   imports: [
     BrowserModule,
@@ -64,10 +67,10 @@ import { AngularFireAuthModule } from "angularfire2/auth";
     AngularFireDatabaseModule,
     AngularFireAuthModule,
     StoreModule.forRoot(fromApp.appReducer),
-    EffectsModule.forRoot([AuthEffects])
+    EffectsModule.forRoot([AuthEffects, UserEffects])
   ],
   providers: [],
   bootstrap: [AppComponent],
-  entryComponents: [PassengerComponent]
+  entryComponents: [SeatMapComponent]
 })
 export class AppModule {}

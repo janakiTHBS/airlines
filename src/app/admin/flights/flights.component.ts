@@ -97,21 +97,21 @@ export class FlightsComponent implements OnInit {
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
     dialogConfig.width = "60%";
-    this.dialog.open(PassengerComponent, dialogConfig);
-    //this.router.navigate(["flights", this.flightId, "passenger"], {
-    //queryParams: { pid: passenger.id }
-    //});
+    dialogConfig.position = {
+      left: "10px"
+    };
+    //this.dialog.open(PassengerComponent, dialogConfig);
+    this.router.navigate(["flights", this.flightId, "passenger"]);
   }
 
   onAddPassenger() {
     //this.flightService.setFlight(this.flight);
-    const dialogConfig = new MatDialogConfig();
-    dialogConfig.disableClose = true;
-    dialogConfig.autoFocus = true;
-    dialogConfig.width = "60%";
-
-    this.dialog.open(PassengerComponent, dialogConfig);
-    //this.router.navigate(["flights", this.flightId, "passenger"]);
+    //const dialogConfig = new MatDialogConfig();
+    //dialogConfig.disableClose = true;
+    //dialogConfig.autoFocus = true;
+    //dialogConfig.width = "60%";
+    //this.dialog.open(PassengerComponent, dialogConfig);
+    this.router.navigate(["flights", this.flightId, "passenger"]);
   }
   onSearchClear() {
     this.searchKey = "";

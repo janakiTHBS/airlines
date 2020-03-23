@@ -1,6 +1,7 @@
 import { Flight } from "../flight.model";
 import { Passenger } from "../../passenger/passenger.model";
 import * as FlightActions from "../store/flight.actions";
+import { Seat } from "../../seat-map/seat.model";
 export interface State {
   flights: Flight[];
 }
@@ -14,7 +15,7 @@ const initialState: State = {
       "Hyd",
       new Date("2020-04-15T06:00:00Z"),
       new Date(),
-      [new Passenger("1Br", "Janaki", "BE15", "wheelchair")],
+      [new Passenger("1Br", "Janaki", new Seat("2B", "yellow"), "wheelchair")],
       ["wheel chair"]
     ),
     new Flight(
@@ -24,7 +25,7 @@ const initialState: State = {
       "Hyd",
       new Date("2020-03-12T08:00:00Z"),
       new Date(),
-      [new Passenger("ebgh", "Janaki", "BH45", "Infants")],
+      [new Passenger("ebgh", "Janaki", new Seat("3C", "orange"), "Infants")],
       ["Infants"]
     ),
     new Flight(
@@ -34,7 +35,7 @@ const initialState: State = {
       "Hyd",
       new Date("2020-03-09T11:00:00Z"),
       new Date(),
-      [new Passenger("bdhft", "Janaki", "infants", "BE15")],
+      [new Passenger("bdhft", "Janaki", new Seat("4F", "red"), "infants")],
       ["special meals"]
     ),
     new Flight(
@@ -44,7 +45,7 @@ const initialState: State = {
       "Hyd",
       new Date("2020-03-09T05:00:00Z"),
       new Date(),
-      [new Passenger("APKW", "Janaki", "infants", "BE15")],
+      [new Passenger("APKW", "Janaki", new Seat("2E", "yellow"), "infants")],
       ["wheel chair"]
     )
   ]

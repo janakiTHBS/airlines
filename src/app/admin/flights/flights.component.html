@@ -78,7 +78,9 @@
 
     <ng-container matColumnDef="seat">
       <mat-header-cell *matHeaderCellDef>Seat NO</mat-header-cell>
-      <mat-cell *matCellDef="let element">{{ element.seatNumber }}</mat-cell>
+      <mat-cell *matCellDef="let element">{{
+        element.seatNumber.seatno
+      }}</mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="action">

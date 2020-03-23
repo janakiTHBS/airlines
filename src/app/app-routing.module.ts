@@ -9,15 +9,20 @@ import { ServiceComponent } from "./admin/service/service.component";
 import { SeatMapComponent } from "./shared/seat-map/seat-map.component";
 import { AuthguardService } from "./shared/auth2/authguard.service";
 import { LoginComponent } from "./shared/auth2/login/login.component";
+import { SignupComponent } from "./shared/auth2/signup/signup.component";
 
 const routes: Routes = [
   { path: "flight", component: FlightComponent },
   { path: "", component: LoginComponent },
   { path: "admin", component: AdminComponent, canActivate: [AuthguardService] },
-  { path: "flights/:id/passenger", component: PassengerComponent },
+  {
+    path: "flights/:id/passenger",
+    component: PassengerComponent,
+    children: [{ path: "seats", component: SeatMapComponent }]
+  },
   { path: "flights/:id", component: FlightsComponent },
   { path: "flights/:id/service", component: ServiceComponent },
-  { path: "seats", component: SeatMapComponent }
+  { path: "signup", component: SignupComponent }
 ];
 
 @NgModule({

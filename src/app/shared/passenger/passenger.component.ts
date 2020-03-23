@@ -12,6 +12,11 @@ import { MAT_DIALOG_DATA } from "@angular/material/dialog";
 import { FlightService } from "../flight/flight.service";
 import { PassengerService } from "./passenger.service";
 import { NotificationService } from "../notification.service";
+import { MatDialog, MatDialogConfig } from "@angular/material/dialog";
+import { SeatMapComponent } from "../seat-map/seat-map.component";
+import { SeatService } from "../seat-map/seat.service";
+import { Seat } from "../seat-map/seat.model";
+import * as SeatActions from "../../shared/seat-map/store/seat.actions";
 
 @Component({
   selector: "app-passenger",
@@ -19,6 +24,7 @@ import { NotificationService } from "../notification.service";
   styleUrls: ["./passenger.component.css"]
 })
 export class PassengerComponent implements OnInit, OnDestroy {
+  seatno: string;
   flightId: number;
   passengerId: string;
   editmode: boolean = false;
@@ -26,18 +32,24 @@ export class PassengerComponent implements OnInit, OnDestroy {
   updateFlight: Flight;
   updatedFlight: Flight;
   services: string[] = [];
+  seats: Seat[];
   constructor(
     private store: Store<fromApp.appState>,
     private route: ActivatedRoute,
     private router: Router,
     private flightService: FlightService,
-    private dialogRef: MatDialogRef<PassengerComponent>,
+    //private dialogRef: MatDialogRef<PassengerComponent>,
     public passengerService: PassengerService,
-    private notificationService: NotificationService
+    private notificationService: NotificationService,
+    //private dialog: MatDialog,
+    private seatService: SeatService
   ) {}
 
   //passengerForm: FormGroup;
   ngOnInit(): void {
+    console.log("passenger nginit called...");
+    //this.seatno = this.seatService.getSelectedSeat();
+    //console.log(this.seatno);
     //this.route.params.subscribe(params => {
     // this.flightId = params["id"];
     //console.log(this.flightId);
@@ -50,11 +62,52 @@ export class PassengerComponent implements OnInit, OnDestroy {
       this.editmode = queryParams["pid"] != null;
     });
 
-    console.log(this.passengerId);
+    //console.log(this.passengerId);
 
+    this.store
+      .select("seats")
+      .pipe(
+        map(seatState => {
+          return seatState.seats;
+        })
+      )
+      .subscribe(seats => {
+        this.seats = seats;
+      });
     //this.fecthFlights();
 
     // this.formInit();
+
+    this.updatedFlight.passengers.forEach(passenger => {
+      console.log(passenger.service.trim().toLowerCase() === "infants");
+      console.log(passenger.service.trim().toLowerCase() === "wheelchair");
+      if (passenger.service.trim().toLowerCase() === "infants") {
+        console.log(passenger.seatNumber);
+        this.store.dispatch(
+          new SeatActions.SelectSeat({
+            seat: passenger.seatNumber.seatno,
+            color: "orange",
+            index: this.seats.indexOf(passenger.seatNumber)
+          })
+        );
+      } else if (passenger.service.trim().toLowerCase() === "wheelchair") {
+        this.store.dispatch(
+          new SeatActions.SelectSeat({
+            seat: passenger.seatNumber.seatno,
+            color: "yellow",
+            index: this.seats.indexOf(passenger.seatNumber) + 1
+          })
+        );
+      } else {
+        this.store.dispatch(
+          new SeatActions.SelectSeat({
+            seat: passenger.seatNumber.seatno,
+            color: "red",
+            index: this.seats.indexOf(passenger.seatNumber)
+          })
+        );
+      }
+    });
   }
 
   ngOnDestroy() {}
@@ -76,7 +129,9 @@ export class PassengerComponent implements OnInit, OnDestroy {
     this.passengerService.passengerForm.reset();
     this.passengerService.initializeFormGroup();
     this.notificationService.success("::Submitted successfully");
-    this.dialogRef.close();
+    //this.dialogRef.close();
+
+    this.router.navigate(["flights", this.updatedFlight.id]);
   }
 
   onClear() {
@@ -170,4 +225,19 @@ export class PassengerComponent implements OnInit, OnDestroy {
   }
   onClear() {}
   */
+
+  OnRouteToSeatMap() {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = false;
+    dialogConfig.autoFocus = true;
+    dialogConfig.width = "60%";
+    dialogConfig.position = { right: "0px" };
+    dialogConfig.panelClass = "custom-dialog-container";
+    // this.dialog.open(SeatMapComponent, dialogConfig);
+    this.router.navigate(["seats"], { relativeTo: this.route });
+  }
+
+  seatSelected(value) {
+    console.log(value);
+  }
 }
