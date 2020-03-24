@@ -85,5 +85,7 @@ mat-form-field-label {
 mat-form-field-can-float.mat-form-field-should-float .mat-form-field-label{
 top:18px;
 }
-
+.wf-loading body {
+  display: none;
+}
 

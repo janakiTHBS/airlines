@@ -1,6 +1,6 @@
 <div>
   <div>
-    <div style="float: right;margin-bottom: 8px;">
+    <div style="float: right;margin-bottom: 8px;" *ngIf="addService===false">
       <button mat-raised-button color="warning" style="background-color:#f37638;color: white;margin-top: 35%;" (click)="onAddServices()">
         Add Services
       </button>
@@ -12,6 +12,30 @@
         </div>
       </div> -->
     </div>
+    <div class="container" *ngIf="addService===true" style="float: right;">
+      <div class="row">
+        <div class="col-xs-4">
+
+        </div>
+          <div class="col-xs-8">
+              <form [formGroup]="serviceForm" (ngSubmit)="onSubmit()">
+                <div class="col-xs-4" style="margin-top: 3%;">
+                  <div class="form-group">
+                      
+                      <input type="text" placeholder="Service..." class="form-control" id="service" formControlName="service">
+                  </div>
+                  </div>
+                  <div class="col-xs-4" style="margin-top: 3%;">
+                  <button type="submit" class="btn btn-primary">Submit</button>&nbsp;
+                  <button (click)="cancelAddService()"  class="btn btn-warning">Cancel</button>
+                  </div>
+                  <!-- <div class="col-xs-2" style="margin-top: 3%;">
+                    <button (click)="cancelAddService()"  class="btn btn-warning">Cancel</button>
+                    </div> -->
+              </form>
+          </div>
+      </div>
+  </div>
     <table>
       <tr>
         <th>Name</th>

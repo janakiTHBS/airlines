@@ -10,7 +10,8 @@ import { MatTableDataSource } from "@angular/material/table";
 import { MatSort } from "@angular/material/sort";
 import { MatPaginator } from "@angular/material/paginator";
 import { MatDialog, MatDialogConfig } from "@angular/material/dialog";
-
+import { FormGroup, FormControl } from '@angular/forms';
+import * as FlightActions from '../../shared/flight/store/flight.actions';
 import { PassengerComponent } from "src/app/shared/passenger/passenger.component";
 import { FlightService } from "src/app/shared/flight/flight.service";
 import { PassengerService } from "src/app/shared/passenger/passenger.service";
@@ -27,6 +28,7 @@ export class FlightsComponent implements OnInit {
   listFlight: MatTableDataSource<Flight>;
   searchKey: string;
   services:string;
+  addService:boolean=false;
 
   displayPassengerColumns: string[] = [
     "name",
@@ -46,8 +48,12 @@ export class FlightsComponent implements OnInit {
     private dialog: MatDialog,
     private passengerService: PassengerService
   ) {}
+  serviceForm:FormGroup;
 
   ngOnInit(): void {
+    this.serviceForm=new FormGroup({
+      service:new FormControl(null)
+    });
     this.route.params.subscribe(params => {
       this.flightId = params["id"];
       this.flightService.setFlightId(this.flightId);
@@ -88,8 +94,20 @@ export class FlightsComponent implements OnInit {
     console.log(this.flight);
   }
   onAddServices() {
-    this.router.navigate(["flights", this.flightId, "service"]);
+    this.addService=true;
+    // this.router.navigate(["flights", this.flightId, "service"]);
   }
+  onSubmit(){
+    const service=this.serviceForm.get('service').value;
+    console.log(this.flightId)
+       this.store.dispatch(new FlightActions.AddService({service:service,index:this.flightId}));
+       this.addService=false
+      //  this.router.navigate(['flights',this.flightId])
+     }
+     cancelAddService(){
+      this.addService=false
+
+     }
 
   onEditPassenger(passenger: Passenger) {
     console.log(passenger);

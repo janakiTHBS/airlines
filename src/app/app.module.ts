@@ -10,6 +10,7 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { NgMatSearchBarModule } from 'ng-mat-search-bar';
 import { StoreModule } from "@ngrx/store";
 import { EffectsModule } from "@ngrx/effects";
+// import * as WebFont from 'webfontloader';
 import { MaterialModule } from "./material.module";
 import { FlexLayoutModule } from "@angular/flex-layout";
 import { AuthEffects } from "./shared/auth/store/auth.effects";
@@ -34,6 +35,7 @@ import { AngularFireDatabaseModule } from "angularfire2/database";
 import { AngularFireAuthModule } from "angularfire2/auth";
 import { SignupComponent } from "./shared/auth2/signup/signup.component";
 import { UserEffects } from "./shared/auth2/store/user.effects";
+
 
 @NgModule({
   declarations: [
@@ -67,6 +69,7 @@ import { UserEffects } from "./shared/auth2/store/user.effects";
       environment.firebaseConfig,
       "angular-auth-firebase"
     ),
+   
     AngularFireDatabaseModule,
     AngularFireAuthModule,
     StoreModule.forRoot(fromApp.appReducer),
