@@ -10,7 +10,7 @@ export interface State {
 
 const initialState: State = {
   passengers: [
-    new Passenger("1", "Janaki", new Seat("1B", "red"), "infants"),
+    new Passenger("1", "kantamani", new Seat("1B", "red"), "infants"),
     new Passenger("2", "Lavanya", new Seat("1C", "blue"), "wheel chair"),
     new Passenger("3", "Sukumar", new Seat("1D", "blue")),
     new Passenger("4", "Nishvi", new Seat("3D", "blue"))

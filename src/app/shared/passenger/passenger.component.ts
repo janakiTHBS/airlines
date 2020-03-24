@@ -61,6 +61,14 @@ export class PassengerComponent implements OnInit, OnDestroy {
       this.passengerId = queryParams["pid"];
       this.editmode = queryParams["pid"] != null;
     });
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = false;
+    dialogConfig.autoFocus = true;
+    dialogConfig.width = "60%";
+    dialogConfig.position = { right: "0px" };
+    dialogConfig.panelClass = "custom-dialog-container";
+    // this.dialog.open(SeatMapComponent, dialogConfig);
+    this.router.navigate(["seats"], { relativeTo: this.route });
 
     //console.log(this.passengerId);
 

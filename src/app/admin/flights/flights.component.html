@@ -1,5 +1,17 @@
 <div>
   <div>
+    <div style="float: right;margin-bottom: 8px;">
+      <button mat-raised-button color="warning" style="background-color:#f37638;color: white;margin-top: 35%;" (click)="onAddServices()">
+        Add Services
+      </button>
+      <!-- <div *ngIf="flight.services">
+        <div>
+          <div *ngFor="let service of flight.services">
+            {{ service }}
+          </div>
+        </div>
+      </div> -->
+    </div>
     <table>
       <tr>
         <th>Name</th>
@@ -7,6 +19,7 @@
         <th>From</th>
         <th>Departure City</th>
         <th>Arrival City</th>
+        <th>Services</th>
       </tr>
       <tr>
         <td>{{ flight.name }}</td>
@@ -14,78 +27,80 @@
         <td>{{ flight.from }}</td>
         <td>{{ flight.timeOfDeparture }}</td>
         <td>{{ flight.timeOfArrival }}</td>
+        <td>{{services}}</td>
       </tr>
     </table>
   </div>
 </div>
 
-<div>
-  <button mat-raised-button color="primary" (click)="onAddServices()">
-    Add Services
-  </button>
-  <div *ngIf="flight.services">
-    <div>
-      <div *ngFor="let service of flight.services">
-        {{ service }}
-      </div>
-    </div>
-  </div>
+<div style="margin-top: 2%;margin-bottom: 3%;">
+ 
+  <!-- <mat-grid-list cols="2" rowHeight="3:1" > -->
+    
+    <!-- <mat-grid-tile> -->
+       <button mat-raised-button style="background-color: #f37638;color: white;float: right;" (click)="onAddPassenger()">
+      <mat-icon>add</mat-icon>Add Passenger
+    </button>
+  <!-- </mat-grid-tile> -->
+    <!-- <mat-grid-tile> -->
+      
+         
+     
+      <mat-form-field class="search-form-field" floatLabel="never" style="background: none;">
+        <input
+          matInput
+          style="width: 30%;"
+          [(ngModel)]="searchKey"
+          placeholder="search"
+          autocomplete="off"
+          (keyup)="applyFilter()"
+        />
+        <!-- <mat-icon matPrefix>search</mat-icon> -->
+      </mat-form-field>
+      <button
+        mat-button
+        matSuffix
+        mat-icon-button
+        aria-label="Clear"
+        *ngIf="searchKey"
+        (click)="onSearchClear()"
+      >
+        <!-- <mat-icon>close</mat-icon> -->
+        </button>
+    <!-- </mat-grid-tile> -->
+    <!-- <mat-grid-tile>4</mat-grid-tile> -->
+  <!-- </mat-grid-list> -->
 </div>
 
-<div class="search-div">
-  <button mat-raised-button (click)="onAddPassenger()">
-    <mat-icon>add</mat-icon>Add Passenger
-  </button>
-  <mat-form-field class="search-form-field" floatLabel="never">
-    <input
-      matInput
-      [(ngModel)]="searchKey"
-      placeholder="search"
-      autocomplete="off"
-      (keyup)="applyFilter()"
-    />
-  </mat-form-field>
-  <button
-    mat-button
-    matSuffix
-    mat-icon-button
-    aria-label="Clear"
-    *ngIf="searchKey"
-    (click)="onSearchClear()"
-  >
-    <mat-icon>close</mat-icon>
-  </button>
-</div>
-
-<div mat="mat-elevation-z8">
+<div mat="mat-elevation-z8" style="margin-top: -2%;" >
   <mat-table [dataSource]="listPassenger" matSort>
     <ng-container matColumnDef="name">
-      <mat-header-cell *matHeaderCellDef mat-sort-header>Name</mat-header-cell>
-      <mat-cell *matCellDef="let element">{{ element.name }}</mat-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header style="padding: 0px;align-items: center;justify-content: center;">Name</mat-header-cell>
+      <mat-cell *matCellDef="let element" style="padding: 0px;align-items: center;justify-content: center;">{{ element.name }}</mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="passport">
       <mat-header-cell *matHeaderCellDef mat-sort-header
-        >Passport</mat-header-cell
+      style="padding: 0px;align-items: center;justify-content: center;" >Passport</mat-header-cell
       >
-      <mat-cell *matCellDef="let element">{{ element.id }}</mat-cell>
+      <mat-cell *matCellDef="let element" style="padding: 0px;align-items: center;justify-content: center;">{{ element.id }}</mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="service">
-      <mat-header-cell *matHeaderCellDef>Service</mat-header-cell>
-      <mat-cell *matCellDef="let element">{{ element.service }}</mat-cell>
+      <mat-header-cell *matHeaderCellDef style="padding: 0px;align-items: center;justify-content: center;">Service</mat-header-cell>
+      <mat-cell *matCellDef="let element" style="padding: 0px;align-items: center;justify-content: center;">{{ element.service }}</mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="seat">
-      <mat-header-cell *matHeaderCellDef>Seat NO</mat-header-cell>
-      <mat-cell *matCellDef="let element">{{
+      <mat-header-cell *matHeaderCellDef style="padding: 0px;align-items: center;justify-content: center;">Seat No</mat-header-cell>
+      <mat-cell *matCellDef="let element" style="padding: 0px;align-items: center;justify-content: center;">{{
         element.seatNumber.seatno
       }}</mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="action">
-      <mat-header-cell *matHeaderCellDef></mat-header-cell>
-      <mat-cell *matCellDef="let element">
+      <mat-header-cell *matHeaderCellDef style="padding: 0px;align-items: center;justify-content: center;"></mat-header-cell>
+      <mat-cell *matCellDef="let element" style="padding: 0px;align-items: center;justify-content: center;">
         <button mat-icon-button (click)="onEditPassenger(element)">
           <mat-icon>launch</mat-icon>
         </button>

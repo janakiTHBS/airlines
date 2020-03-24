@@ -51,6 +51,7 @@ export class FlightComponent implements OnInit {
         const arrival = flight.timeOfDeparture;
 
         this.flight = flight;
+        console.log(this.flight)
       });
     this.passengerlist = new MatTableDataSource(this.flight.passengers);
   }

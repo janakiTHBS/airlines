@@ -35,7 +35,7 @@ const initialState: State = {
       "Hyd",
       new Date("2020-03-09T11:00:00Z"),
       new Date(),
-      [new Passenger("bdhft", "Janaki", new Seat("4F", "red"), "infants")],
+      [new Passenger("bdhft", "Lavanya", new Seat("4F", "red"), "infants")],
       ["special meals"]
     ),
     new Flight(

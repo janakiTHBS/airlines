@@ -228,7 +228,7 @@
 -->
 
   <ul>
-    <div>
+    <!-- <div>
       <button
         mat-icon-button
         color="primary"
@@ -257,7 +257,7 @@
       >
         <mat-icon>favorite</mat-icon></button
       ><span>Preffered</span>
-    </div>
+    </div> -->
   </ul>
   <div *ngFor="let row of arrayOfArrays; let i = index">
     <div *ngFor="let elementrow of row">
@@ -268,6 +268,7 @@
             (click)="seatSelected(elementrow)"
             mat-raised-button
             [ngStyle]="{ background: elementrow.color }"
+            style="color: white;"
           >
             <mat-icon>airline_seat_recline_normal</mat-icon
             >{{ elementrow.seatno }}

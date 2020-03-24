@@ -26,6 +26,7 @@ export class FlightsComponent implements OnInit {
   listPassenger: MatTableDataSource<any>;
   listFlight: MatTableDataSource<Flight>;
   searchKey: string;
+  services:string;
 
   displayPassengerColumns: string[] = [
     "name",
@@ -83,6 +84,7 @@ export class FlightsComponent implements OnInit {
         this.flights = flights;
       });
     this.flight = this.flights[this.flightId];
+    this.services=this.flight.services.toString()
     console.log(this.flight);
   }
   onAddServices() {

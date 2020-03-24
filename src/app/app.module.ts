@@ -7,6 +7,7 @@ import { AppComponent } from "./app.component";
 import { AuthComponent } from "./shared/auth/auth.component";
 import { HttpClientModule } from "@angular/common/http";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { NgMatSearchBarModule } from 'ng-mat-search-bar';
 import { StoreModule } from "@ngrx/store";
 import { EffectsModule } from "@ngrx/effects";
 import { MaterialModule } from "./material.module";
@@ -57,6 +58,8 @@ import { UserEffects } from "./shared/auth2/store/user.effects";
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
+    NgMatSearchBarModule ,
+
     AuthRoutingModule,
     FlexLayoutModule,
     MaterialModule,
