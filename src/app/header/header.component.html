@@ -1,0 +1,12 @@
+<mat-toolbar class="custom" style="background-color: cadetblue;">
+  
+  <span style="color: white;">AirLine services</span>
+  <div>
+    <span *ngIf="isLoggedIn">Flight</span>
+  </div>
+  <div routerLink="/admin">Admin</div>
+  <div routerLink="/flight">User</div>
+  <div>
+    <span *ngIf="isLoggedIn" (click)="authService.logout()">Logout</span>
+  </div>
+</mat-toolbar>

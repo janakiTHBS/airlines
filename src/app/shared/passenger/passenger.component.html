@@ -1,0 +1,67 @@
+<div class="row">
+  <div class="col-md-12">
+    <form
+      [formGroup]="passengerService.passengerForm"
+      (ngSubmit)="onSubmit()"
+      class="normal-form"
+    >
+      <mat-grid-list cols="1" rowHeight="600px">
+        <mat-grid-tile>
+          <div class="controles-container">
+            <input type="hidden" formControlName="$key" />
+            <mat-form-field>
+              <input
+                formControlName="id"
+                matInput
+                placeholder="Passport number"
+              />
+              <mat-error>This field is mandatory</mat-error>
+            </mat-form-field>
+
+            <mat-form-field>
+              <input formControlName="name" matInput placeholder="Name" />
+              <mat-error>This is field is mandatory</mat-error>
+            </mat-form-field>
+            <mat-form-field>
+              <mat-label>Choose Service:</mat-label>
+              <mat-select formControlName="service">
+                <mat-option
+                  *ngFor="let service of updatedFlight.services"
+                  [value]="service"
+                  >{{ service }}</mat-option
+                >
+              </mat-select>
+            </mat-form-field>
+
+            <!-- <mat-form-field>
+          <mat-label>Seat No:</mat-label>
+          <input
+            formControlName="seatNumber"
+            matInput
+            placeholder="seatno"
+            (click)="OnRouteToSeatMap()"
+            [value]="seatno"
+          />
+        </mat-form-field>-->
+
+            <div>Choose seat : <a (click)="OnRouteToSeatMap()"  style="cursor: pointer;">Seat</a></div>
+            
+<div style="margin:auto;margin-top:2%">
+  <router-outlet></router-outlet>
+</div>
+            <div class="button-row" style="display: flex;align-items: center;justify-content: center;">
+              <button mat-raised-button color="primary">Submit</button>
+              <button mat-raised-button color="warn" (click)="onClear()">
+                Clear
+              </button>
+            </div>
+          </div>
+        </mat-grid-tile>
+      </mat-grid-list>
+    </form>
+  </div>
+
+  <!-- <div class="col-md-5">
+    <router-outlet></router-outlet>
+  </div> -->
+</div>

@@ -1,0 +1,36 @@
+<form
+  [formGroup]="userService.userForm"
+  (ngSubmit)="onSubmit()"
+  class="normal-form"
+>
+  <div class="controles-container">
+    <mat-form-field>
+      <input formControlName="UserName" matInput placeholder="username" />
+      <mat-error>This field is required</mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <input formControlName="Password" matInput placeholder="Password" />
+      <mat-error>This field is required</mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <input formControlName="Email" matInput placeholder="Email" />
+      <mat-error>This field is required</mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <input formControlName="FirstName" matInput placeholder="FirstName" />
+      <mat-error>This field is required</mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <input formControlName="LastName" matInput placeholder="LastName" />
+      <mat-error>This field is required</mat-error>
+    </mat-form-field>
+
+    <div class="button-row">
+      <button mat-raised-button color="primary">Submit</button>
+    </div>
+  </div>
+</form>

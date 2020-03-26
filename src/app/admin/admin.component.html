@@ -1,0 +1,35 @@
+<mat-table [dataSource]="listFlight" style="margin-top: 2%;">
+  <ng-container matColumnDef="Operator">
+    <mat-header-cell *matHeaderCellDef style="padding: 0px;align-items: center;justify-content: center;"> Operator</mat-header-cell>
+    <mat-cell *matCellDef="let element" style="cursor: pointer;padding: 0px;align-items: center;justify-content: center;">{{ element.name }}</mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="To">
+    <mat-header-cell *matHeaderCellDef style="padding: 0px;align-items: center;justify-content: center;">To</mat-header-cell>
+    <mat-cell *matCellDef="let element" style="padding: 0px;align-items: center;justify-content: center;">{{ element.to }}</mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="From">
+    <mat-header-cell *matHeaderCellDef style="padding: 0px;align-items: center;justify-content: center;">From</mat-header-cell>
+    <mat-cell *matCellDef="let element" style="padding: 0px;align-items: center;justify-content: center;">{{ element.from }}</mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="Departure time">
+    <mat-header-cell *matHeaderCellDef style="padding: 0px;align-items: center;justify-content: center;">Departure time</mat-header-cell>
+    <mat-cell *matCellDef="let element" style="padding: 0px;align-items: center;justify-content: center;">{{
+      element.timeOfDeparture | date: "medium"
+    }}</mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="Arrival time">
+    <mat-header-cell *matHeaderCellDef style="padding: 0px;align-items: center;justify-content: center;">Arrival time</mat-header-cell>
+    <mat-cell *matCellDef="let element" style="padding: 0px;align-items: center;justify-content: center;">{{
+      element.timeOfArrival | date: "medium"
+    }}</mat-cell>
+  </ng-container>
+  <mat-header-row *matHeaderRowDef="displayFlightColumns"></mat-header-row>
+  <mat-row
+    *matRowDef="let row; columns: displayFlightColumns"
+    (click)="displayPassengers(listFlight.filteredData.indexOf(row))"
+  ></mat-row>
+  <mat-footer-row></mat-footer-row>
+</mat-table>

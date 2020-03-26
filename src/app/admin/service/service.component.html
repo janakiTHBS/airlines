@@ -1,0 +1,13 @@
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12">
+            <form [formGroup]="serviceForm" (ngSubmit)="onSubmit()">
+                <div class="form-group">
+                    <label for="service">Service:</label>
+                    <input type="text" class="form-control" id="service" formControlName="service">
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+    </div>
+</div>

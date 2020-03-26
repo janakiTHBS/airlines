@@ -1,0 +1,52 @@
+<div class="container" style="display: flex;">
+  <ul>
+    <!-- <div>
+      <button
+        mat-icon-button
+        color="primary"
+        aria-label="Example icon-button with a heart icon"
+      >
+        <mat-icon>favorite</mat-icon></button
+      ><span>Available</span>
+      <button
+        mat-icon-button
+        disabled
+        aria-label="Example icon-button with a heart icon"
+      >
+        <mat-icon>favorite</mat-icon></button
+      ><span>Unavailable</span>
+      <button
+        mat-icon-button
+        color="accent"
+        aria-label="Example icon-button with a heart icon"
+      >
+        <mat-icon>favorite</mat-icon></button
+      ><span>Main Cabin Extra</span>
+      <button
+        mat-icon-button
+        color="warn"
+        aria-label="Example icon-button with a heart icon"
+      >
+        <mat-icon>favorite</mat-icon></button
+      ><span>Preffered</span>
+    </div> -->
+  </ul>
+  <div *ngFor="let row of arrayOfArrays; let i = index">
+    <div *ngFor="let elementrow of row">
+      <ul>
+        <li>
+          <button
+            class="seat"
+            (click)="seatSelected(elementrow)"
+            mat-raised-button
+            [ngStyle]="{ background: elementrow.color }"
+            style="color: white;"
+          >
+            <mat-icon>airline_seat_recline_normal</mat-icon
+            >{{ elementrow.seatno }}
+          </button>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

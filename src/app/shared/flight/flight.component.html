@@ -1,0 +1,77 @@
+
+  <mat-form-field>
+    <mat-label>Choose the Flight</mat-label>
+    <mat-select>
+      <mat-option *ngFor="let flight of flights" [value]="flight.timeOfDeparture" (click)="selectFlight(flight)">{{flight.timeOfDeparture | date:'medium'}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12">
+      <table>
+        <tr>
+          <th>Flight</th>
+          <th>From</th>
+          <th>To</th>
+          <th>Departure</th>
+          <th>Arrival</th>
+        </tr>
+        <tr>
+          <td>{{ flight.name }}</td>
+          <td>{{ flight.from }}</td>
+          <td>{{ flight.to }}</td>
+          <td>{{ flight.timeOfDeparture | date:'medium'}}</td>
+          <td>{{ flight.timeOfArrival  | date :'medium'}}</td>
+        </tr>
+      </table>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+      <mat-table [dataSource]="passengerlist">
+        <ng-container matColumnDef="name">
+          <mat-header-cell *matHeaderCellDef>Name</mat-header-cell>
+          <mat-cell *matCellDef="let element" style="padding: 0px;align-items: center;justify-content: center;">{{ element.name }}</mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="passport">
+          <mat-header-cell *matHeaderCellDef
+          style="padding: 0px;align-items: center;justify-content: center;" >Passport</mat-header-cell
+          >
+          <mat-cell *matCellDef="let element" style="padding: 0px;align-items: center;justify-content: center;">{{ element.id }}</mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="service">
+          <mat-header-cell *matHeaderCellDef style="padding: 0px;align-items: center;justify-content: center;">Service</mat-header-cell>
+          <mat-cell *matCellDef="let element" style="padding: 0px;align-items: center;justify-content: center;">{{ element.service }}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="seat">
+          <mat-header-cell *matHeaderCellDef style="padding: 0px;align-items: center;justify-content: center;">Seat No</mat-header-cell>
+          <mat-cell *matCellDef="let element" style="padding: 0px;align-items: center;justify-content: center;">{{
+            element.seatNumber !==null ? element.seatNumber.seatno :'Not yet'
+          }}</mat-cell>
+        </ng-container>
+       
+        <ng-container matColumnDef="action">
+          <mat-header-cell *matHeaderCellDef style="padding: 0px;align-items: center;justify-content: center;"></mat-header-cell>
+          <mat-cell *matCellDef="let element" style="padding: 0px;align-items: center;justify-content: center;">
+            <button mat-icon-button (click)="selectSeat(element)">
+              <mat-icon>launch</mat-icon>
+            </button> 
+          </mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="displayPassengerColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayPassengerColumns"></mat-row>
+       <mat-footer-row></mat-footer-row>
+      </mat-table>
+
+      <div class="button-row" style="display: flex;align-items: center;justify-content: center;">
+        <button mat-raised-button color="primary" (click)="saveToDB()">Submit</button>
+        <button mat-raised-button color="warn">
+          Clear
+        </button>
+      </div>
+    </div>
+    </div>
+  </div>
+</div>
